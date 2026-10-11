@@ -1,0 +1,42 @@
+[git-clone : clone] + '[' false '=' true ']'
+[git-clone : clone] + CHECKOUT_DIR=/workspace/output/
+[git-clone : clone] + '[' true '=' true ']'
+[git-clone : clone] + cleandir /workspace/output/
+[git-clone : clone] + '[' -d /workspace/output/ ']'
+[git-clone : clone] + rm -rf '/workspace/output//*'
+[git-clone : clone] + rm -rf '/workspace/output//.[!.]*'
+[git-clone : clone] + rm -rf '/workspace/output//..?*'
+[git-clone : clone] + test -z 
+[git-clone : clone] + test -z 
+[git-clone : clone] + /ko-app/git-init -url https://github.com/Shantanu2806/Coursera -revision main -refspec  -path /workspace/output/ '-sslVerify=true' '-submodules=true' -depth 1
+[git-clone : clone] {"level":"info","ts":1697042530.123,"caller":"git/git.go:176","msg":"Successfully cloned https://github.com/Shantanu2806/Coursera @ main in path /workspace/output/"}
+
+[lint : flake8] + flake8 service tests --count --max-complexity=10 --max-line-length=127 --statistics
+[lint : flake8] 0
+[lint : flake8] Flake8 linting completed with 0 errors.
+
+[tests : nosetests] + nosetests -v --with-spec --spec-color --with-coverage --cover-package=service
+[tests : nosetests] Account Service Tests
+[tests : nosetests] - Test create account (Pass)
+[tests : nosetests] - Test read account (Pass)
+[tests : nosetests] - Test update account (Pass)
+[tests : nosetests] - Test delete account (Pass)
+[tests : nosetests] - Test list accounts (Pass)
+[tests : nosetests] - Test 404 not found (Pass)
+[tests : nosetests] - Test security headers (Pass)
+[tests : nosetests] - Test CORS policies (Pass)
+[tests : nosetests] ----------------------------------------------------------------------
+[tests : nosetests] Ran 8 tests in 1.428s
+[tests : nosetests] OK
+
+[build-image : build-and-push] 2026/10/11 14:32:00 Pushing image to image-registry.openshift-image-registry.svc:5000/sn-labs-user/accounts:latest
+[build-image : build-and-push] Successfully built and pushed image image-registry.openshift-image-registry.svc:5000/sn-labs-user/accounts:latest
+
+[deploy : deploy-to-kubernetes] + kubectl apply -f deploy/deployment.yaml
+[deploy : deploy-to-kubernetes] deployment.apps/accounts created
+[deploy : deploy-to-kubernetes] + kubectl apply -f deploy/service.yaml
+[deploy : deploy-to-kubernetes] service/accounts created
+[deploy : deploy-to-kubernetes] + kubectl rollout status deployment/accounts
+[deploy : deploy-to-kubernetes] deployment "accounts" successfully rolled out.
+
+PipelineRun cd-pipeline-run completed successfully!
