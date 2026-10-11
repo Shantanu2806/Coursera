@@ -1,0 +1,40 @@
+Run actions/checkout@v3
+Syncing repository: Shantanu2806/cicd-final-project
+Getting Git version info
+Copying '/home/runner/work/_actions/actions/checkout/v3' to '/home/runner/work/_temp/_actions/actions/checkout/v3'
+Writing SSH known_hosts file
+Fetching the repository
+Determining the default branch: main
+Checking out the ref: refs/heads/main
+Completed job initialization
+
+Run actions/setup-python@v5
+Installed versions:
+  python 3.9.18
+Successfully set up Python 3.9.18
+
+Run python -m pip install --upgrade pip
+Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages (24.0)
+Collecting flake8
+  Downloading flake8-7.0.0-py2.py3-none-any.whl (57 kB)
+Collecting nose
+  Downloading nose-1.3.7-py3-none-any.whl (154 kB)
+Successfully installed flake8-7.0.0 nose-1.3.7
+
+Run Lint with flake8
+flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+0
+flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+0
+
+Run Run unit tests with nose
+nosetests -v
+test_routes (test_sample.TestSample) ... ok
+test_health (test_sample.TestSample) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.045s
+
+OK
+Cleaning up orphan processes
+Job completed successfully.
